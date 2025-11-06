@@ -1,6 +1,6 @@
 # Azpire Designs Website
 
-This repository contains the source code for the **[Azpire Designs](https://azpiredesign.com)** website.  
+This repository contains the source code for the **[Azpire Designs](https://azpiredesigns.com)** website.  
 It is being built entirely with **Next.js**, combining both the **frontend website** and **admin backend** within a single monorepo-style structure.
 
 ---
