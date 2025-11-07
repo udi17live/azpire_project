@@ -10,11 +10,8 @@ export async function loginAction(prevState:any , formData: FormData) {
     const password = formData.get("password") as string;
     const parsed = loginSchema.safeParse({email, password});
 
-    console.log(parsed);
-
     if (!parsed.success) {
         const errors = parsed.error.flatten().fieldErrors;
-        console.error("Failed to login user: ", errors);
         return { success: false, errors };
     }
 
@@ -33,6 +30,5 @@ export async function loginAction(prevState:any , formData: FormData) {
         return { success: false, errors: {_form: [message] } };
     }
 
-    // return {success: true, errors: {}};
     redirect("/admin");
 }

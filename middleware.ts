@@ -1,24 +1,27 @@
 import { NextResponse, NextRequest } from "next/server";
-import {getSessionCookie} from "better-auth/cookies";
+import {auth} from "@/lib/auth";
+import {headers} from "next/headers";
 
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl
+    const session = await auth.api.getSession({
+        headers: Object.fromEntries(req.headers)
+    })
 
-    if (pathname.startsWith("/admin/auth/")) {
-        return NextResponse.next()
+    const isAuthRoute = pathname.startsWith("/auth")
+    const isAdminRoute = pathname.startsWith("/admin/");
+
+    if (isAuthRoute && session) {
+        return NextResponse.redirect(new URL("/admin", req.url));
     }
 
-    if (pathname.startsWith("/admin")) {
-        const sessionCookie = getSessionCookie(req)
-
-        if (!sessionCookie) {
-            return NextResponse.redirect(new URL("/admin/auth/login", req.url))
-        }
-
+    if (isAdminRoute && !isAuthRoute && !session) {
+        return NextResponse.redirect(new URL("/admin/auth/login", req.url));
     }
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ["/admin/:path*"]
+    runtime: "nodejs",
+    matcher: ["/admin/:path*", "/auth/:path*"],
 }

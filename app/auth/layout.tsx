@@ -5,7 +5,7 @@ import LogoExtended from "@/components/logos/LogoExtended";
 
 export default function AuthLayout({children}:{children: React.ReactNode}) {
     return (
-        <>
+        <div className="flex w-full h-screen">
             <div className="flex items-center justify-center w-full md:w-1/2">
                 <div className="flex flex-col w-full items-start justify-center px-15 max-w-xl">
                     <LogoExtended className="mb-6 -ml-2.5" />
@@ -21,6 +21,6 @@ export default function AuthLayout({children}:{children: React.ReactNode}) {
                 </Link>
                 <Image fill src="/auth_bg.webp" alt="Auth Background" className="absolute object-cover" />
             </div>
-        </>
+        </div>
     )
 }
