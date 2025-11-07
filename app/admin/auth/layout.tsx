@@ -6,9 +6,11 @@ import LogoExtended from "@/components/logos/LogoExtended";
 export default function AuthLayout({children}:{children: React.ReactNode}) {
     return (
         <>
-            <div className="flex flex-col w-full md:w-1/2 items-start justify-center px-15">
-                <LogoExtended className="mb-6 -ml-2.5" />
-                {children}
+            <div className="flex items-center justify-center w-full md:w-1/2">
+                <div className="flex flex-col w-full items-start justify-center px-15 max-w-xl">
+                    <LogoExtended className="mb-6 -ml-2.5" />
+                    {children}
+                </div>
             </div>
             <div className="hidden md:block md:w-1/2 bg-secondary relative">
                 <Link
